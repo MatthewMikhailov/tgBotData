@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\matth\PycharmProjects\ExcelParsers\1.0\main.py", line 1037, in <module>
+    main()
+  File "C:\Users\matth\PycharmProjects\ExcelParsers\1.0\main.py", line 46, in main
+    pars_to_WI()
+  File "C:\Users\matth\PycharmProjects\ExcelParsers\1.0\main.py", line 412, in pars_to_WI
+    line_WI.remove(word_WI)
+ValueError: list.remove(x): x not in list
