@@ -1,4 +1,4 @@
-from drive.MyDrive.tgBotData.parsers.excel_parser.global_data import *
+from tgBotData.parsers.excel_parser.global_data import *
 
 logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(name)s - %(message)s", level=logging.INFO, datefmt='%H:%M:%S'
@@ -304,8 +304,9 @@ def main(filename, site_name, chat_id):
     df = pd.read_excel(f'{filename}', index_col=None, sheet_name='Лист1', keep_default_na=False)
     len_df = df.shape[0]
     out = pars_to_site_sample(site_name)
-    out.to_excel('/'.join(filename.split('/')[:2]) + '/parsed_' + filename.split('/')[2].split('.')[0] + '.xlsx',
-                 index=False)
+    filepath1 = '/content/tgBotData/'+ filename.split('/')[-3] + '/' + filename.split('/')[-2] + '/parsed_' + filename.split('/')[-1]
+    filepath = filepath1.split('.')[0] + '.xlsx'
+    out.to_excel(filepath, index=False)
     # out.to_excel('Output.xlsx', index=False)
     print('ok')
 
