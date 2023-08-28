@@ -138,7 +138,7 @@ def get_data(prompt, data, chat_id, driverpath):
         input_line.send_keys(Keys.ENTER)
         time.sleep(rnd())
         main_counter = 1
-        for i in range(20):
+        for i in range(2):
             try_counter = 0
             while True:
                 try:
@@ -233,14 +233,13 @@ def main(filename, chat_id, max_alowed_process, driverpath):
     while True:
         try:
             #print(filename)
-            filepath = '/content/drive/MyDrive/tgBotData/'+ filename.split('/')[-3] + '/' + filename.split('/')[-2] + '/parsed_' + filename.split('/')[-1]
+            filepath = '/content/tgBotData/'+ filename.split('/')[-3] + '/' + filename.split('/')[-2] + '/parsed_' + filename.split('/')[-1]
             #print(filepath)
             df.to_excel(filepath, index=False)
             break
         except Exception:
-            print('Ошибка записи данных в Excel файл, закройте файл')
-            input('Нажмите Enter чтобы повторить попытку')
-            continue
+            print('Ошибка записи данных в Excel файл')
+            break
     logger.info(f'({chat_id})Парсинг завершен {str(datetime.now() - dt1)}')
 
 
