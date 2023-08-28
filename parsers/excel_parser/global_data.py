@@ -65,7 +65,7 @@ wi_mask_names_dict = {'Наименование товара': 'Наименов
                       'Штрих-код единицы товара': 'Штрихкод*', 'Вес единицы товара': 'Вес, кг*'}
 
 try:
-    dm_data_df = pd.read_excel('/content/drive/MyDrive/tgBotData/parsers/excel_parser/market_samples/CONSUMER_GOODS_template.xlsx', index_col=False, sheet_name='Справочник', keep_default_na=False)
+    dm_data_df = pd.read_excel('/content/tgBotData/parsers/excel_parser/market_samples/CONSUMER_GOODS_template.xlsx', index_col=False, sheet_name='Справочник', keep_default_na=False)
 except FileNotFoundError:
     try:
         os.mkdir('market_samples')
@@ -109,7 +109,7 @@ dm_mask_names_dict = {'Наименование товара': ('TYPE_PRODUCT', 
 
 
 try:
-    kp = pd.read_excel('/content/drive/MyDrive/tgBotData/parsers/excel_parser/market_samples/Копия вв КЭ.xlsx', index_col=False, sheet_name='Карточка товара', keep_default_na=False)
+    kp = pd.read_excel('/content/tgBotData/parsers/excel_parser/market_samples/Копия вв КЭ.xlsx', index_col=False, sheet_name='Карточка товара', keep_default_na=False)
 except FileNotFoundError:
     try:
         os.mkdir('market_samples')
