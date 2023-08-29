@@ -138,7 +138,7 @@ def get_data(prompt, data, chat_id, driverpath):
         input_line.send_keys(Keys.ENTER)
         time.sleep(rnd())
         main_counter = 1
-        for i in range(2):
+        for i in range(20):
             try_counter = 0
             while True:
                 try:
@@ -265,7 +265,7 @@ def run_parser_wb(filename, chat_id, max_alowed_process, driverpath):
         except FileExistsError:
             pass
         log_date = '_'.join(str(datetime.today()).split('.')[0].split('-')[-1].split(' ')).replace(':', '-')
-        file_name = f'../error_logs/ozon_{log_date}.txt'
+        file_name = f'../error_logs/wb_{log_date}.txt'
         err_file = open(file=file_name, mode='w')
         traceback.print_exc(file=err_file)
         err_file.close()
