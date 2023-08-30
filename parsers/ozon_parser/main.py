@@ -147,17 +147,26 @@ def get_data(prompt, data, chat_id, driverpath):
         try:
             driver.find_element(By.XPATH, "/html/body/div[@id='__ozon']/div[@id='layoutPage']/div[@class='b0']/header[@class='vc1 v1c']/div[@id='stickyHeader']/div[@class='vc4']/div[@class='d4-a s2']/div[@class='s3']/div[@class='r4']/div[@class='r6 r7']/div[@class='q8 q9 s']/div[@class='r0 r3 tsBodyM a2-a']/button[@class='a2-a4']/span[@class='a2-b1 a2-c5']/span[@class='a2-e7']").click()
         except NoSuchElementException:
-            driver.find_element(By.XPATH, "/html/body/div[@id='__ozon']/div[@id='layoutPage']/div[@class='b0']/div[@class='jd']/div[@class='dj0']/div[@class='dj1']/div[@class='q4']/div[@class='d4-a q2']/div[@class='p5']/div[@class='p7']/div[@class='o9 p q0']/div[@class='p1 p4 tsBody400Small a2-a']/button[@class='a2-a4']/span[@class='a2-b1 a2-d6']/span[@class='a2-e7']").click()
+            try:
+                driver.find_element(By.XPATH, "/html/body/div[@id='__ozon']/div[@id='layoutPage']/div[@class='b0']/div[@class='jd']/div[@class='dj0']/div[@class='dj1']/div[@class='q4']/div[@class='d4-a q2']/div[@class='p5']/div[@class='p7']/div[@class='o9 p q0']/div[@class='p1 p4 tsBody400Small a2-a']/button[@class='a2-a4']/span[@class='a2-b1 a2-d6']/span[@class='a2-e7']").click()
+            except NoSuchElementException:
+                driver.find_element(By.XPATH, "/html/body/div[@id='__ozon']/div[@id='layoutPage']/div[@class='b0']/div[@class='di5']/div[@class='d5i']/div[@class='d6i']/div[@class='q4']/div[@class='d4-a q2']/div[@class='p5']/div[@class='p7']/div[@class='o9 p q0']/div[@class='p1 p4 tsBody400Small a2-a']/button[@class='a2-a4']/span[@class='a2-b1 a2-d6']/span[@class='a2-e7']").click()
         time.sleep(2)
         try:
             driver.find_element(By.XPATH, "/html/body/div[@class='vue-portal-target']/div[@class='d2-a d2-a9']/div[@class='d2-a2']/div[@class='d2-a3 d2-a4']/div[@class='d2-a5']/div[@class='g2']/div[@class='b0 g4']/div/div[@class='u9']/div[@class='v6']/div[@class='v8']/div[@class='p8d dp9']/div[@class='d0q q0d']/div[@class='q3d']/span[@class='dq5']").click()
         except NoSuchElementException:
-            driver.find_element(By.XPATH, "/html/body/div[@class='vue-portal-target']/div[@class='d2-a d2-a9']/div[@class='d2-a2']/div[@class='d2-a3 d2-a4']/div[@class='d2-a5']/div[@class='g2']/div[@class='b0 g4']/div/div[@class='u9']/div[@class='v6']/div[@class='v8']/div[@class='p8d dp9']/div[@class='d0q q0d']/div[@class='qd1']/div[@class='d2q tsBody500Medium']").click()
+            try:
+                driver.find_element(By.XPATH, "/html/body/div[@class='vue-portal-target']/div[@class='d2-a d2-a9']/div[@class='d2-a2']/div[@class='d2-a3 d2-a4']/div[@class='d2-a5']/div[@class='g2']/div[@class='b0 g4']/div/div[@class='u9']/div[@class='v6']/div[@class='v8']/div[@class='p8d dp9']/div[@class='d0q q0d']/div[@class='qd1']/div[@class='d2q tsBody500Medium']").click()
+            except NoSuchElementException:
+                driver.find_element(By.XPATH, "/html/body/div[@class='vue-portal-target'][2]/div[@class='d2-a d2-a9']/div[@class='d2-a2']/div[@class='d2-a3 d2-a4']/div[@class='d2-a5']/div[@class='g2']/div[@class='b0 g4']/div/div[@class='u9']/div[@class='v6']/div[@class='v8']/div[@class='pd3 p3d']/div[@class='pd5 dp6']/div[@class='dp9']/span[@class='qd']").click()
         time.sleep(2)
         try:
             driver.find_element(By.XPATH, "/html/body/div[@class='vue-portal-target']/div[@class='d2-a d2-a9']/div[@class='d2-a2']/div[@class='d2-a3 d2-a4']/div[@class='d2-a5']/div[@class='g2']/div[@class='b0 g4']/div[@class='w4']/div[@class='x']/div[@class='x0']/div[@class='x1']/div[@class='p8d'][1]/div[@class='d0q d1q']").click()
         except NoSuchElementException:
-            driver.find_element(By.XPATH, "/html/body/div[@class='vue-portal-target']/div[@class='d2-a d2-a9']/div[@class='d2-a2']/div[@class='d2-a3 d2-a4']/div[@class='d2-a5']/div[@class='g2']/div[@class='b0 g4']/div[@class='w4']/div[@class='x']/div[@class='x0']/div[@class='x1']/div[@class='p8d'][1]/div[@class='d0q d1q']").click()
+            try:
+                driver.find_element(By.XPATH, "/html/body/div[@class='vue-portal-target']/div[@class='d2-a d2-a9']/div[@class='d2-a2']/div[@class='d2-a3 d2-a4']/div[@class='d2-a5']/div[@class='g2']/div[@class='b0 g4']/div[@class='w4']/div[@class='x']/div[@class='x0']/div[@class='x1']/div[@class='p8d'][1]/div[@class='d0q d1q']").click()
+            except NoSuchElementException:
+                driver.find_element(By.XPATH, "/html/body/div[@class='vue-portal-target'][2]/div[@class='d2-a d2-a9']/div[@class='d2-a2']/div[@class='d2-a3 d2-a4']/div[@class='d2-a5']/div[@class='g2']/div[@class='b0 g4']/div[@class='w4']/div[@class='x']/div[@class='x0']/div[@class='x1']/div[@class='pd3'][1]/div[@class='pd5 pd6']").click()
         time.sleep(rnd())
         # time.sleep(30)
         # print(f'({chat_id})Парсим запрос {prompt}')
