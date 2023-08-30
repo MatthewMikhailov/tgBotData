@@ -272,13 +272,12 @@ def main(filename, chat_id, max_alowed_process, driverpath):
     df['Индекс_2'] = new_column_2
     while True:
         try:
-            df.to_excel('/'.join(filename.split('/')[:2]) + '/parsed_' + filename.split('/')[2], index=False)
-            #df.to_excel('output.xlsx', index=False)
+            filepath = '/content/tgBotData/'+ filename.split('/')[-3] + '/' + filename.split('/')[-2] + '/parsed_' + filename.split('/')[-1]
+            df.to_excel(filepath, index=False)
             break
         except Exception:
-            print('Ошибка записи данных в Excel файл, закройте файл')
-            input('Нажмите Enter чтобы повторить попытку')
-            continue
+            print('Ошибка записи данных в Excel файл')
+            break
     logger.info(f'({chat_id})Парсинг завершен {str(datetime.now() - dt1)}')
 
 
