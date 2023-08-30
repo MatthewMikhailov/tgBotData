@@ -36,7 +36,7 @@ def rnd():
 
 def load_page(page_index, prompt):
     global art_dict, curr_page_load, main_counter
-    # print(f'Парсим страничку {page_index + 1} по запросу <{prompt}>')
+    logger.info(f'Парсим страничку {page_index + 1} по запросу <{prompt}>')
     # for i in range(1):
     #    driver.execute_script("window.scrollBy(0,500)", "")
     #    time.sleep(0.15)
@@ -84,11 +84,10 @@ def load_page(page_index, prompt):
     # print(art_count)
 
 
-def get_data(prompt, data, chat_id):
+def get_data(prompt, data, chat_id, driverpath):
     global driver, art_dict, curr_page_load, main_counter
-    #s = Service('C:/Users/matth/PycharmProjects/main_tg_bot/chrome_driver/chromedriver.exe')
     try:
-        s = Service(executable_path=r"C:\Users\matth\.wdm\drivers\chromedriver\win64\116.0.5845.96\chromedriver-win32\chromedriver.exe")
+        s = Service(executable_path=driverpath)
         #s = Service(ChromeDriverManager().install())
         #C:\Users\matth\.wdm\drivers\chromedriver\win64\116.0.5845.96
     except ValueError:
@@ -96,9 +95,35 @@ def get_data(prompt, data, chat_id):
         latest_chromedriver_version = urllib.request.urlopen(latest_chromedriver_version_url).read().decode('utf-8')
         s = Service(ChromeDriverManager(driver_version=latest_chromedriver_version).install())
     options = uc.ChromeOptions()
+    options.binary_location = '/usr/bin/google-chrome'
     options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument('--incognito')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--window-size=1050,892')
     options.add_argument('--headless')
+    options.add_argument('--blink-settings=imagesEnabled=false')
+    options.add_argument('--disable-background-networking')
+    options.add_argument('--disable-default-apps')
+    options.add_argument('--disable-sync')
+    options.add_argument('--disable-translate')
+    options.add_argument('--hide-scrollbars')
+    options.add_argument('--metrics-recording-only')
+    options.add_argument('--no-first-run')
+    options.add_argument('--safebrowsing-disable-auto-update')
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--ignore-ssl-errors')
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-renderer-backgrounding")
+    options.add_argument("--disable-background-timer-throttling")
+    options.add_argument("--disable-backgrounding-occluded-windows")
+    options.add_argument("--disable-client-side-phishing-detection")
+    options.add_argument("--disable-crash-reporter")
+    options.add_argument("--disable-oopr-debug-crash-dump")
+    options.add_argument("--no-crash-upload")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-low-res-tiling")
+    options.add_argument('--no-default-browser-check')
+    options.add_argument('--deny-permission-prompts')
+    options.add_argument('--disable-notifications')
     #options.add_argument('--window-size=1050,892')
     prefs = {"profile.default_content_settings.geolocation": 2}
     options.add_experimental_option("prefs", prefs)
@@ -112,14 +137,13 @@ def get_data(prompt, data, chat_id):
                 delete window.cdc_adoQpoasnfa76pfcZLmcfl_Proxy
           '''
     })
-    #driver.set_window_size(1050, 892)
     driver.maximize_window()
     curr_page_load = 0
     # prompt_atr_dict = {}
     try:
         driver.get("https://www.ozon.ru/")
         time.sleep(rnd())
-        driver.get_screenshot_as_file('headless1.png')
+        #driver.get_screenshot_as_file('headless1.png')
         try:
             driver.find_element(By.XPATH, "/html/body/div[@id='__ozon']/div[@id='layoutPage']/div[@class='b0']/header[@class='vc1 v1c']/div[@id='stickyHeader']/div[@class='vc4']/div[@class='d4-a s2']/div[@class='s3']/div[@class='r4']/div[@class='r6 r7']/div[@class='q8 q9 s']/div[@class='r0 r3 tsBodyM a2-a']/button[@class='a2-a4']/span[@class='a2-b1 a2-c5']/span[@class='a2-e7']").click()
         except NoSuchElementException:
@@ -193,7 +217,7 @@ def get_data(prompt, data, chat_id):
         logger.info(f'({chat_id})Парсинг по запросу "{prompt}" завершен, обработано карточек товара: {main_counter}')
 
 
-def main(filename, chat_id, max_alowed_process):
+def main(filename, chat_id, max_alowed_process, driverpath):
     dt1 = datetime.now()
     # filename = send_way_to_file()
     df = pd.read_excel(filename, index_col=False, keep_default_na=False)
@@ -213,7 +237,7 @@ def main(filename, chat_id, max_alowed_process):
                 # print('Ожидание парсинга, текущих процессов: ', len(active_children()) - 1)
                 # print('Процессов в очереди: ', len(prompts) - task_id)
                 time.sleep(10)
-            Process(target=get_data, args=(prompts[task_id], m_dict, chat_id)).start()
+            Process(target=get_data, args=(prompts[task_id], m_dict, chat_id, driverpath)).start()
         while len(active_children()) > 1:
             # print('Ожидание парсинга, текущих процессов: ', len(active_children()) - 1)
             time.sleep(5)
@@ -261,10 +285,10 @@ def return_time_ozon(filename, max_alowed_process):
         return 4 * 60
 
 
-def run_parser_ozon(filename, chat_id, max_alowed_process):
+def run_parser_ozon(filename, chat_id, max_alowed_process, driverpath):
     try:
         logger.info(f'({chat_id})Started')
-        main(filename, chat_id, max_alowed_process)
+        main(filename, chat_id, max_alowed_process, driverpath)
     except Exception:
         try:
             os.mkdir('../../error_logs')
